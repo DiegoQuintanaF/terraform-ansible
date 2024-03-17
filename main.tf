@@ -85,6 +85,13 @@ resource "aws_key_pair" "mtc_auth" {
   public_key = file("${var.ssh_key_path}.pub")
 }
 
+resource "ansible_playbook" "playbook" {
+  depends_on = [aws_instance.dev_node]
+  playbook   = "nginx.yaml"
+  name       = aws_instance.dev_node.public_ip
+  replayable = true
+}
+
 resource "ansible_host" "my_ec2" { #### ansible host details
   depends_on = [aws_instance.dev_node]
   name       = aws_instance.dev_node.public_ip
@@ -94,12 +101,7 @@ resource "ansible_host" "my_ec2" { #### ansible host details
     ansible_ssh_private_key_file = var.ssh_key_path,
     ansible_python_interpreter   = "/usr/bin/python3"
   }
-
-  provisioner "local-exec" {
-    command = "ansible-playbook -i inventory.yml nginx.yaml"
-  }
 }
-
 
 resource "aws_instance" "dev_node" {
   instance_type          = var.instance_type
@@ -110,5 +112,9 @@ resource "aws_instance" "dev_node" {
 
   tags = {
     Name = "dev_node"
+  }
+
+  provisioner "local-exec" {
+    command = "ansible-playbook -i inventory.yml nginx.yaml"
   }
 }
