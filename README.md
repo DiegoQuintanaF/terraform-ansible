@@ -14,19 +14,13 @@ Configuration a simple php server with nginx and php-fpm.
 
 ## Usage
 
-1. Clone this repository
-
-   ```bash
-   git clone
-   ```
-
-2. Initialize the Terraform configuration
+1. Initialize the Terraform configuration
 
    ```bash
    terraform init
    ```
 
-3. Install de Ansible plugin: cloud.terraform
+2. Install de Ansible plugin: cloud.terraform
 
    ```bash
    ansible-galaxy collection install cloud.terraform
@@ -34,18 +28,32 @@ Configuration a simple php server with nginx and php-fpm.
 
    This plugin is used to create the inventory file for Ansible.
 
-4. Create the infrastructure with Terraform
+3. Create the infrastructure with Terraform
 
    ```bash
    terraform apply -auto-approve
    ```
 
-5. Wait for the infrastructure to be created and wait for the local-exec provisioner to run the Ansible playbook and write yes to the prompt.
+4. Wait for the infrastructure to be created and wait for the local-exec provisioner to run the Ansible playbook and write yes to the prompt.
 
-6. Access the server using the public IP address + /test.php
+5. Access the server using the public IP address + /test.php
 
-7. Destroy the infrastructure
+6. Destroy the infrastructure
 
    ```bash
    terraform destroy -auto-approve
    ```
+
+## Evidence
+
+### [Terraform apply 1]('https://res.cloudinary.com/drvoywub5/image/upload/v1710752404/image_uploader/strpld5ydq0y8vtrx0f3.png')
+
+<img src="https://res.cloudinary.com/drvoywub5/image/upload/v1710752404/image_uploader/strpld5ydq0y8vtrx0f3.png">
+
+### [Terraform apply 2]('https://res.cloudinary.com/drvoywub5/image/upload/v1710752580/image_uploader/akfmsv1ycfz8wn9sxdos.png')
+
+<img src="https://res.cloudinary.com/drvoywub5/image/upload/v1710752580/image_uploader/akfmsv1ycfz8wn9sxdos.png">
+
+### [Terraform apply 3 (ansible)]('https://res.cloudinary.com/drvoywub5/image/upload/v1710752679/image_uploader/xcx7ep6fwsmpf9kdq64s.png')
+
+<img src="https://res.cloudinary.com/drvoywub5/image/upload/v1710752679/image_uploader/xcx7ep6fwsmpf9kdq64s.png">

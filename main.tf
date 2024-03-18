@@ -115,6 +115,6 @@ resource "aws_instance" "dev_node" {
   }
 
   provisioner "local-exec" {
-    command = "ansible-playbook --ssh-extra-args='-o StrictHostKeyChecking=no' -i inventory.yml nginx.yaml"
+    command = "ansible-playbook -i inventory.yml nginx.yaml"
   }
 }
